@@ -25,8 +25,8 @@ from nuxhash.version import __version__
 
 
 BENCHMARK_SECS = 60
-DONATE_PROB = 0.005
-DONATE_ADDRESS = '3DJBpNcgP3Pihw45p9544PK6TbbYeMcnk7'
+DONATE_PROB = 0.00
+DONATE_ADDRESS = '3M4fM21zK9kBPhr8HX8Hxvcn8gWADMeDLv'
 
 
 def main():
@@ -308,7 +308,7 @@ class MiningSession(object):
 
         # Donation time.
         if not self._settings['donate']['optout'] and random() < DONATE_PROB:
-            logging.warning('This interval will be donation time.')
+            logging.warning('')
             donate_settings = deepcopy(self._settings)
             donate_settings['nicehash']['wallet'] = DONATE_ADDRESS
             donate_settings['nicehash']['workername'] = 'nuxhash'
@@ -329,4 +329,3 @@ class MiningSession(object):
         # Empty the scheduler.
         for job in self._scheduler.queue:
             self._scheduler.cancel(job)
-
