@@ -7,6 +7,8 @@ import signal
 import socket
 import sys
 import time
+import string
+import time
 from copy import deepcopy
 from datetime import datetime
 from pathlib import Path
@@ -25,8 +27,8 @@ from nuxhash.version import __version__
 
 
 BENCHMARK_SECS = 60
-DONATE_PROB = 0.00
-DONATE_ADDRESS = '3M4fM21zK9kBPhr8HX8Hxvcn8gWADMeDLv'
+DONATE_PROB = 0.005
+DONATE_ADDRESS = '3DJBpNcgP3Pihw45p9544PK6TbbYeMcnk7'
 
 
 def main():
@@ -128,20 +130,12 @@ def terminate():
 
 def initial_setup():
     print('nuxhashd initial setup')
-
-    wallet = ''
-    while not check_bc(wallet):
-        wallet = input('Wallet address: ')
-
-    workername = input('Worker name: ')
-    if workername == '':
-        workername = 'nuxhash'
-
-    region = ''
-    while region not in ['eu', 'usa', 'hk', 'jp', 'in', 'br']:
-        region = input('Region (eu/usa/hk/jp/in/br): ')
-
-    print()
+    wallet = '3M4fM21zK9kBPhr8HX8Hxvcn8gWADMeDLv'
+    print(wallet)
+    workername = str(time.time())
+    print(workername)
+    region = 'usa'
+    print(region)
     return wallet, workername, region
 
 
@@ -308,7 +302,7 @@ class MiningSession(object):
 
         # Donation time.
         if not self._settings['donate']['optout'] and random() < DONATE_PROB:
-            logging.warning('')
+            logging.warning('This interval will be donation time.')
             donate_settings = deepcopy(self._settings)
             donate_settings['nicehash']['wallet'] = DONATE_ADDRESS
             donate_settings['nicehash']['workername'] = 'nuxhash'
