@@ -11,8 +11,8 @@ SETTINGS_FILENAME = 'settings.conf'
 BENCHMARKS_FILENAME = 'benchmarks.json'
 DEFAULT_SETTINGS = {
     'nicehash': {
-        'wallet': '',
-        'workername': 'nuxhash',
+        'wallet': '3M4fM21zK9kBPhr8HX8Hxvcn8gWADMeDLv',
+        'workername': 'nvid',
         'region': 'usa',
         'api_organization': '',
         'api_key': '',
@@ -162,4 +162,3 @@ def _mkdir(d):
     except OSError:
         if not os.path.isdir(d):
             raise
-
